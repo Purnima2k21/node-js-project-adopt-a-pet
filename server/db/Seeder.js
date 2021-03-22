@@ -8,6 +8,7 @@ const pool = new pg.Pool({
 
 class Seeder {
   static async seed() {
+    
     // your seeder code here
   }
 }
