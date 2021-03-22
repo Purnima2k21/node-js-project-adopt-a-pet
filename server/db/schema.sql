@@ -6,7 +6,7 @@ CREATE TABLE pet_types (
 );
 
 DROP TABLE IF EXISTS adoptable_pets;
-CREATE TABLE adoptable_pets(
+CREATE TABLE adoptable_pets (
   id SERIAL PRIMARY KEY,
   name VARCHAR (255) NOT NULL,
   img_url VARCHAR (255) NOT NULL,
@@ -18,12 +18,12 @@ CREATE TABLE adoptable_pets(
 );
 
 DROP TABLE IF EXISTS adoption_applications;
-CREATE TABLE adoption_applications(
+CREATE TABLE adoption_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR (255) NOT NULL,
   phone_number VARCHAR (15) NOT NULL,
   email VARCHAR (255) NOT NULL,
-  home_status VARCHAR (255) NOT NULL
+  home_status VARCHAR (255) NOT NULL,
   application_status VARCHAR (255) NOT NULL,
   pet_id INTEGER REFERENCES adoptable_pets(id)
 );
@@ -37,10 +37,7 @@ CREATE TABLE pet_surrender_applications (
   pet_name VARCHAR(255) NOT NULL,
   pet_age INTEGER,
   pet_type_id INTEGER REFERENCES pet_types(id),
-  pet_image_url VARCHAR(255),
+  pet_image_url VARCHAR(255) NOT NULL,
   vaccination_status BOOLEAN,
-  application_status VARCHAR(255),
+  application_status VARCHAR(255) NOT NULL
 );
-
-
-

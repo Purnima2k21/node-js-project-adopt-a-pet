@@ -10,7 +10,7 @@
     "dev:client": "node_modules/.bin/webpack-dev-server --host 0.0.0.0",
     "webpack": "node_modules/.bin/webpack --config ./webpack.config.js",
     "test": "./node_modules/.bin/jest",
-    "db:import": "psql dogs < db/schema.sql",
+    "db:import": "psql pets < db/schema.sql",
     "db:seed": "node ./server/bin/seed.js"
   },
 
