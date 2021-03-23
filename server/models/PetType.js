@@ -1,37 +1,32 @@
-import pg from "pg"
-import _ from "lodash"
+import pg from "pg";
 
-
-const pool = new pg.Pool({
-  connectionString: "postgres://postgres:password@localhost:5432/adopt_a_pet"
-})
+const pool = new pg.Pool({connectionString: "postgres://postgres:password@localhost5432/pets"});
 
 class PetType {
-  constructor({ id, type, description }) {
-    this.id = id
-    this.type = type
-    this.description = description
+  constructor({type, description=null}) {
+    this.type = type;
+    this.description = description;
+  }
+
+
+
+  static async findAll() {
+    try {
+      const client = await pool.connect();
+      const result = await client.query("SELECT * FROM pet_types")
+
+      const petTypeData = result.rows;
+      const petTypes = petTypeData.map((petType) => {
+        return new this(petType)
+      })
+      client.release();
+      return petTypes;
+    } catch (error) {
+      console.log(error)
+      throw error
     }
-
-   static async findAll() {
-     try{
-       const client = await pool.connect()
-       const result = await client.query("SELECT * FROM pet_types;")
-
-       const petTypeData = result.rows
-
-       const petTypes = petTypeData.map(
-         (petType) => new this(petType)
-         )
-
-         client.release()
-
-         return petTypes
-
-     }catch(error){
-       console.log(error)
-     }
-   } 
+  }
 }
+
 
 export default PetType
