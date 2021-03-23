@@ -36,10 +36,10 @@ class Seeder {
 
   static async seed2() {
     // adoptable_pets
-    LineReader.eachLine(adoptablePetsPath, async (line, last, done) => {
-      const insertAdoptablePet = "INSERT INTO adoptable_pets " + 
+    const insertAdoptablePet = "INSERT INTO adoptable_pets " + 
       "(name, img_url, age, vaccination_status, adoption_story, adoption_status, type_id)" + 
       "VALUES ($1, $2, $3, $4, $5, $6, $7)"
+    LineReader.eachLine(adoptablePetsPath, async (line, last, done) => {
       try {
         const [name, imgUrl, age, vaccinationStatus, adoptionStory, adoptionStatus, typeName] = line.split("; ")
         const typeIdResult = await pool.query("SELECT pet_types.id FROM pet_types WHERE pet_types.type = $1", [typeName])
@@ -81,14 +81,14 @@ class Seeder {
 
   static async seed4() {
     // pet_surrender_applications
+    const insertPetSurrenderApplications = "INSERT INTO pet_surrender_applications " + 
+      "(name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status)" + 
+      "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
     LineReader.eachLine(petSurrenderApplicationsPath, async (line, last, done) => {
       try {
         const [name, phoneNumber, email, petName, petAge, petTypeName, petImageUrl, vaccinationStatus, applicationStatus] = line.split("; ")
         const petTypeIdResult = await pool.query("SELECT pet_types.id FROM pet_types WHERE pet_types.type = $1", [petTypeName])
         const petTypeId = petTypeIdResult.rows[0].id
-        const insertPetSurrenderApplications = "INSERT INTO pet_surrender_applications " + 
-          "(name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status)" + 
-          "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
         const applicationValues = [name, phoneNumber, email, petName, petAge, petTypeId, petImageUrl, vaccinationStatus, applicationStatus]
         await pool.query(insertPetSurrenderApplications, applicationValues)
         if (last) {
