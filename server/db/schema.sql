@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS pet_types;                     
+DROP TABLE IF EXISTS pet_types CASCADE;                     
 CREATE TABLE pet_types (
   id SERIAL PRIMARY KEY,
   type VARCHAR(255) NOT NULL,
   description text
 );
 
-DROP TABLE IF EXISTS adoptable_pets;
+DROP TABLE IF EXISTS adoptable_pets CASCADE;
 CREATE TABLE adoptable_pets (
   id SERIAL PRIMARY KEY,
   name VARCHAR (255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE adoptable_pets (
   type_id INTEGER REFERENCES pet_types(id)
 );
 
-DROP TABLE IF EXISTS adoption_applications;
+DROP TABLE IF EXISTS adoption_applications CASCADE;
 CREATE TABLE adoption_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR (255) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE adoption_applications (
   pet_id INTEGER REFERENCES adoptable_pets(id)
 );
 
-DROP TABLE IF EXISTS pet_surrender_applications;
+DROP TABLE IF EXISTS pet_surrender_applications CASCADE;
 CREATE TABLE pet_surrender_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
