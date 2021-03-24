@@ -3,7 +3,9 @@ import clientRouter from "./clientRouter.js"
 
 const rootRouter = new express.Router()
 
-rootRouter.use()
+rootRouter.get("/", (req, res) => {
+  res.redirect("/pets")
+})
 
 rootRouter.use("/", clientRouter)
 
