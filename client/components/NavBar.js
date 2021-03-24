@@ -31,7 +31,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      <div className="grid-container">
+      <div className="grid-container text-center">
         <Switch>
           <Route exact path="/pets" component={PetTypesIndex} />
           <Route exact path="/pets/:petType" component={PetsIndex} />

@@ -3,6 +3,8 @@ import { hot } from "react-hot-loader/root"
 import { Route, BrowserRouter } from "react-router-dom"
 import "foundation-sites"
 import $ from "jquery"
+import "regenerator-runtime/runtime"
+
 
 import NavBar from "./NavBar"
 

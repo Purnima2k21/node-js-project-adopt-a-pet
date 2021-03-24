@@ -1,1 +1,8 @@
 /* your styles, here */
+.no-bullets {
+  list-style-type: none;
+}
+
+.pet-type-tile {
+  margin: 4rem;
+}
