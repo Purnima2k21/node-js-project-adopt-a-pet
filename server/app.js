@@ -31,12 +31,8 @@ app.use(express.static(path.join(__dirname, "../client/public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-<<<<<<< HEAD
-app.use(rootRouter);
-=======
 // Express routes
 app.use(rootRouter)
->>>>>>> origin/user-story-1
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")

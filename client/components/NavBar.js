@@ -2,8 +2,8 @@ import React from "react"
 import { Link, Switch, Route } from "react-router-dom"
 
 import PetTypesIndex from "./PetTypesIndex"
-import PetsIndex from "./PetsIndex"
-import SurrenderPetForm from "./SurrenderPetForm"
+// import PetsIndex from "./PetsIndex"
+// import SurrenderPetForm from "./SurrenderPetForm"
 
 const NavBar = () => {
   return (
@@ -16,9 +16,9 @@ const NavBar = () => {
       </div>
       <Switch>
         <Route exact path="/pets" component={PetTypesIndex} />
-        <Route exact path="/pets/dog" component={<PetsIndex petType="dog" />} />
-        <Route exact path="/pets/cat" render={<PetsIndex petType="cat" />} />
-        <Route exact path="/pets/rabbit" render={<PetsIndex petType="rabbit" />} />
+        {/* <Route exact path="/pets/dog" component={<PetsIndex petType="dog" />} /> */}
+        {/* <Route exact path="/pets/cat" render={<PetsIndex petType="cat" />} /> */}
+        {/* <Route exact path="/pets/rabbit" render={<PetsIndex petType="rabbit" />} /> */}
       </Switch>
     </div>
   )
