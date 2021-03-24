@@ -1,15 +1,21 @@
 import React from "react"
-import {Link} from "react-router-dom"
-// where i want to access each species 
+import { Link } from "react-router-dom"
 
-const PetTypeTile = (props) => {
+const PetTypeTile = ({ petType }) => {
+  const { type, description } = petType
+  const images = {
+    dog: "https://s3fs.bestfriends.org/s3fs-public/Stax9853MW@2x.png",
+    cat: "https://www.pasadosafehaven.org/wp-content/uploads/2020/08/Pax-2.jpg",
+    rabbit: "https://www.ddfl.org/wp-content/uploads/2019/04/easter-bunnies.jpg",
+  }
+
   return (
-    <li>
-      <img></img>
-      <Link to={`/pets/${props.petType}`}>Pet Type</Link>
-      <h1>Dogs</h1>
-      <h1>Cats</h1>
-      <h1>Rabbits</h1>
+    <li className="pet-type-tile">
+      <Link to={`/pets/${type}s`}>
+        <img src={`${images[type]}`} width="300px" />
+        <h2>{type}s</h2>
+      </Link>
+      <h5>{description}</h5>
     </li>
   )
 }
