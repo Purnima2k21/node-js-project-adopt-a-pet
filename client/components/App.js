@@ -5,7 +5,6 @@ import "foundation-sites"
 import $ from "jquery"
 import "regenerator-runtime/runtime"
 
-
 import NavBar from "./NavBar"
 
 const App = () => {

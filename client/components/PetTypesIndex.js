@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import PetTypeTile from "./PetTypeTile"
 
@@ -11,7 +11,7 @@ const PetTypesIndex = (props) => {
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw(error)
+        throw (error)
       }
       const petTypeData = await response.json()
       setPetTypes(petTypeData.petTypes)
@@ -25,7 +25,7 @@ const PetTypesIndex = (props) => {
   }, [])
 
   const petTypeListItems = petTypes.map((petType) => {
-    return(
+    return (
       <PetTypeTile
         key={petType.id}
         petType={petType}
@@ -33,7 +33,7 @@ const PetTypesIndex = (props) => {
     )
   })
 
-  return(
+  return (
     <>
       <h1>Adopt A Pet</h1>
       <ul className="no-bullets">

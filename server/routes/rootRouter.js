@@ -9,7 +9,6 @@ rootRouter.get("/", (req, res) => {
 })
 
 rootRouter.use("/", clientRouter)
-
 rootRouter.use("/api/v1/pets", petsRouter)
 
 export default rootRouter
