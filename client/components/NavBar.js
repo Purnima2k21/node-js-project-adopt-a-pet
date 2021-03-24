@@ -3,6 +3,7 @@ import { Link, Switch, Route } from "react-router-dom"
 
 import PetTypesIndex from "./PetTypesIndex"
 import PetsIndex from "./PetsIndex"
+import PetShow from "./PetShow"
 import SurrenderPetForm from "./SurrenderPetForm"
 
 const NavBar = () => {
@@ -34,7 +35,9 @@ const NavBar = () => {
       <div className="grid-container text-center">
         <Switch>
           <Route exact path="/pets" component={PetTypesIndex} />
+          <Route exact path="/pets/404" render={() => <h1>404 - Not Found</h1>} />
           <Route exact path="/pets/:petType" component={PetsIndex} />
+          <Route exact path="/pets/:petType/:id" component={PetShow} />
           <Route exact path="/adoptions/new" component={SurrenderPetForm} />
         </Switch>
       </div>
