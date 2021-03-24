@@ -2,7 +2,7 @@ import express from "express"
 
 const clientRouter = new express.Router()
 
-const clientRoutes = ["/", "/pets"]
+const clientRoutes = ["/", "/pets", "/adoption-application"]
 
 clientRouter.get(clientRoutes, (req, res) => {
   res.render("home")

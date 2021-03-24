@@ -34,12 +34,12 @@ const PetTypesIndex = (props) => {
   })
 
   return (
-    <>
+    <div>
       <h1>Adopt A Pet</h1>
       <ul className="no-bullets">
         {petTypeListItems}
       </ul>
-    </>
+    </div>
   )
 }
 
