@@ -1,19 +1,17 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const PetTile = (props) => {
-
-
+const PetTile = ({ id, name, imgUrl, age, vaccinationStatus, petType }) => {
   return (
-    <li>
-        <Link to={`/pets/${props.name}/${props.id}`}>
-        <h1>Hi</h1>
-        <h1>{props.name}</h1>  </Link> 
-        <ul> 
-            <li>{props.img_url}</li>
-            <li>{props.age}</li>
-            <li>{props.vaccination_status}</li>
-        </ul>
+    <li className="pet-tile">
+      <Link to={`/pets/${petType}/${id}`}>
+        <h2>{name}</h2>
+        <img src={imgUrl} width="300px" />
+      </Link>
+      <ul className="no-bullets">
+        <li>Age: {age}</li>
+        <li>Vaccinated: {vaccinationStatus ? "Yes" : "No"}</li>
+      </ul>
     </li>
   )
 }
