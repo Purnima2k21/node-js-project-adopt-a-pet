@@ -2,10 +2,12 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const PetTile = (props) => {
+
+
   return (
     <li>
-        <Link to={`/pets/dynamicType/${props.id}`}>
-        
+        <Link to={`/pets/${props.name}/${props.id}`}>
+        <h1>Hi</h1>
         <h1>{props.name}</h1>  </Link> 
         <ul> 
             <li>{props.img_url}</li>

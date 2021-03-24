@@ -1,6 +1,6 @@
 import pg from "pg";
 
-const pool = new pg.Pool({connectionString: "postgres://postgres:password@localhost5432/pets"});
+const pool = new pg.Pool({connectionString: "postgres://postgres:password@localhost:5432/pets"});
 
 class PetType {
   constructor({type, description=null}) {
