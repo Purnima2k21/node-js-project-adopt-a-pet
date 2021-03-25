@@ -3,14 +3,14 @@ import React, { useState } from "react"
 const SurrenderPetForm = () => {
   const [newPet, setNewPet] = useState({
     name:"",
-    phone_number:"",
+    phoneNumber:"",
     email:"",
-    pet_name:"",
-    pet_age:"",
-    pet_type_id:"",
-    pet_image_url:"",
-    vaccination_status:"",
-    application_status:""
+    petName:"",
+    petAge:"",
+    petType:"",
+    petImageUrl:"",
+    vaccinationStatus:"",
+    applicationStatus:""
   })
 
   // NOt sure if this error state or redirect will be used
@@ -79,7 +79,7 @@ const SurrenderPetForm = () => {
             type="text"
             name="phone_number"
             onChange={handleInputChange}
-            value={newPet.phone_number}
+            value={newPet.phoneNumber}
           />
         </label>
 
@@ -101,7 +101,7 @@ const SurrenderPetForm = () => {
             type="text"
             name="pet_name"
             onChange={handleInputChange}
-            value={newPet.pet_name}
+            value={newPet.petName}
           />
         </label>
         
@@ -112,22 +112,25 @@ const SurrenderPetForm = () => {
             type="text"
             name="pet_age"
             onChange={handleInputChange}
-            value={newPet.pet_age}
+            value={newPet.petAge}
           />
         </label>
        
-        <label htmlFor="pet_age">
+        <label htmlFor="pet_type">Pet Type: </label>
          Pet Type:
-         {/* This should be a drop down with options for each of the animal types your site supports  */}
-          <input
+          <select
             id=""
             type="text"
             name=""
             onChange={handleInputChange}
-            value={newPet.}
-          />
-        </label>
-
+            value={newPet.petType}
+            >
+            <option value="">Select a Pet Type</option>
+            <option value="dog">Dog</option> 
+            <option value="cat">Cat</option> 
+            <option value="rabbit">Rabbit</option>   
+          </select>
+        
         <label htmlFor="pet_image_url">
          Pet Image Url:
           <input
@@ -135,7 +138,7 @@ const SurrenderPetForm = () => {
             type="text"
             name="pet_image_url"
             onChange={handleInputChange}
-            value={newPet.pet_image_url}
+            value={newPet.petImageUrl}
           />
         </label>
 
@@ -146,20 +149,14 @@ const SurrenderPetForm = () => {
             type="text"
             name="vaccination_status"
             onChange={handleInputChange}
-            value={newPet.vaccination_status}
+            value={newPet.vaccinationStatus}
           />
         </label>
 
-
         <input className="button" type="submit" value="Surrender My Pet" />
-        
-
         </form>
       </div>
-
   )
-  
-
 }
 
 export default SurrenderPetForm
