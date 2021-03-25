@@ -1,18 +1,17 @@
 import React, { useState } from "react"
 import ErrorsList from "./ErrorsList"
 
-
 const SurrenderPetForm = () => {
   const [newPet, setNewPet] = useState({
-    name:"",
-    phoneNumber:"",
-    email:"",
-    petName:"",
-    petAge:"",
-    petType:"",
-    petImageUrl:"",
-    vaccinationStatus:"",
-    applicationStatus:"pending"
+    name: "",
+    phoneNumber: "",
+    email: "",
+    petName: "",
+    petAge: "",
+    petType: "",
+    petImageUrl: "",
+    vaccinationStatus: "",
+    applicationStatus: "pending",
   })
 
   const [errors, setErrors] = useState([])
@@ -34,22 +33,19 @@ const SurrenderPetForm = () => {
       const response = await fetch("/api/v1/adoptions", {
         method: "POST",
         headers: new Headers({
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         }),
-        body: JSON.stringify(newPet)
+        body: JSON.stringify(newPet),
       })
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
           return setErrors(body.errors)
-        } else {
-          const errorMessage = `${response.status} (${response.statusText})`
-          const error = new Error(errorMessage)
-          throw(error)
         }
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
       } else {
         const body = await response.json()
-        console.log("Posted successfully!", body);
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -57,26 +53,24 @@ const SurrenderPetForm = () => {
   }
 
   const handleInputChange = (event) => {
-    setNewPet({
-      ...newPet,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
+    const { name, value } = event.currentTarget
+    setNewPet({ ...newPet, [name]: value })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if(validFormSubmission()){
+    if (validFormSubmission()) {
       addNewPet()
     }
   }
 
   return (
-      <div>
-        <h1>Surrender Pet Form</h1>
-        <ErrorsList errors={ errors }/>
-        <form onSubmit={handleSubmit} className="callout">
+    <div>
+      <h1>Surrender Pet Form</h1>
+      <ErrorsList errors={errors} />
+      <form onSubmit={handleSubmit} className="callout">
         <label htmlFor="name">
-         Name:
+          Name:
           <input
             id="name"
             type="text"
@@ -84,10 +78,10 @@ const SurrenderPetForm = () => {
             onChange={handleInputChange}
             value={newPet.name}
           />
-         </label>
+        </label>
 
         <label htmlFor="phoneNumber">
-         Phone Number:
+          Phone Number:
           <input
             id="phoneNumber"
             type="text"
@@ -98,7 +92,7 @@ const SurrenderPetForm = () => {
         </label>
 
         <label htmlFor="email">
-         Email:
+          Email:
           <input
             id="email"
             type="text"
@@ -107,9 +101,9 @@ const SurrenderPetForm = () => {
             value={newPet.email}
           />
         </label>
-        
+
         <label htmlFor="petName">
-         Pet Name:
+          Pet Name:
           <input
             id="petName"
             type="text"
@@ -118,9 +112,9 @@ const SurrenderPetForm = () => {
             value={newPet.petName}
           />
         </label>
-        
+
         <label htmlFor="petAge">
-         Pet Age:
+          Pet Age:
           <input
             id="petAge"
             type="number"
@@ -129,23 +123,25 @@ const SurrenderPetForm = () => {
             value={newPet.petAge}
           />
         </label>
-       
-        <label htmlFor="petType">Pet Type: </label>
+
+        <label htmlFor="petType">
+          Pet Type:
           <select
             id="petType"
             type="text"
             name="petType"
             onChange={handleInputChange}
             value={newPet.petType}
-            >
+          >
             <option value="">Select a Pet Type</option>
-            <option value="dog">Dog</option> 
-            <option value="cat">Cat</option> 
-            <option value="rabbit">Rabbit</option>   
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="rabbit">Rabbit</option>
           </select>
-        
+        </label>
+
         <label htmlFor="petImageUrl">
-         Pet Image Url:
+          Pet Image Url:
           <input
             id="petImageUrl"
             type="text"
@@ -155,7 +151,7 @@ const SurrenderPetForm = () => {
           />
         </label>
 
-         <label htmlFor="vaccinationStatus">Vaccination Status:</label>
+        <label htmlFor="vaccinationStatus">Vaccination Status:</label>
         <div>
           <input
             type="radio"
@@ -185,8 +181,8 @@ const SurrenderPetForm = () => {
           <label htmlFor="vaccinationStatusNull">Unknown</label>
         </div>
         <input className="button" type="submit" value="Surrender My Pet" />
-        </form>
-      </div>
+      </form>
+    </div>
   )
 }
 

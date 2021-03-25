@@ -2,6 +2,7 @@ import express from "express"
 import clientRouter from "./clientRouter.js"
 import petsRouter from "./api/v1/petsRouter.js"
 import adoptionsRouter from "./api/v1/adoptionsRouter.js"
+
 const rootRouter = new express.Router()
 
 rootRouter.get("/", (req, res) => {

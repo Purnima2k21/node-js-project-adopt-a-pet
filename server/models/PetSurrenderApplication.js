@@ -21,7 +21,7 @@ class PetSurrenderApplication {
     vaccinationStatus = null,
     application_status = "pending",
     applicationStatus = "pending",
-    petType
+    petType,
   }) {
     this.id = id
     this.name = name
@@ -39,13 +39,18 @@ class PetSurrenderApplication {
   async save() {
     try {
       const client = await pool.connect()
+
       const typeId = await client.query("SELECT id FROM pet_types WHERE type=$1", [this.petType])
       this.petTypeId = typeId.rows[0].id
-      if(Number.isNaN(parseInt(this.petAge))){
-        this.petAge=null
+
+      if (Number.isNaN(parseInt(this.petAge))) {
+        this.petAge = null
       }
+
       const queryString =
-        "INSERT INTO pet_surrender_applications (name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+        "INSERT INTO pet_surrender_applications " +
+        "(name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) " +
+        "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
       const values = [
         this.name,
         this.phoneNumber,
@@ -55,7 +60,7 @@ class PetSurrenderApplication {
         this.petTypeId,
         this.petImageUrl,
         this.vaccinationStatus,
-        this.applicationStatus
+        this.applicationStatus,
       ]
 
       await client.query(queryString, values)
