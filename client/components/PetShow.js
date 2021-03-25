@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
-import AdoptPetForm from "./AdoptPetForm"
+import AdoptionApplicationForm from "./AdoptionApplicationForm.js"
 
 const PetShow = (props) => {
   const { petType, id } = props.match.params
@@ -48,7 +48,7 @@ const PetShow = (props) => {
       <button className="button" onClick={clickAdopt}>
         Adopt Me!
       </button>
-      {showForm && <AdoptPetForm />}
+      {showForm && <AdoptionApplicationForm />}
     </div>
   )
 }
