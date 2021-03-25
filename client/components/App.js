@@ -6,6 +6,7 @@ import $ from "jquery"
 import "regenerator-runtime/runtime"
 
 import NavBar from "./NavBar"
+import AdoptionApplicationForm from "./AdoptionApplicationForm"
 
 const App = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Route path="/" component={NavBar} />
+      <Route path="/adoption-application" component={AdoptionApplicationForm} />
     </BrowserRouter>
   )
 }
