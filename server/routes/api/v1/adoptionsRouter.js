@@ -1,6 +1,6 @@
 import express from "express"
 
-import PetSurrenderApplication from "../../../models/PetSurrenderApplication"
+import PetSurrenderApplication from "../../../models/PetSurrenderApplication.js"
 
 const adoptionsRouter = new express.Router()
 

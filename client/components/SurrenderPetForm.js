@@ -123,7 +123,7 @@ const SurrenderPetForm = () => {
          Pet Age:
           <input
             id="petAge"
-            type="text"
+            type="number"
             name="petAge"
             onChange={handleInputChange}
             value={newPet.petAge}
@@ -131,7 +131,6 @@ const SurrenderPetForm = () => {
         </label>
        
         <label htmlFor="petType">Pet Type: </label>
-         Pet Type:
           <select
             id="petType"
             type="text"

@@ -39,7 +39,7 @@ class PetSurrenderApplication {
   async save() {
     try {
       const client = await pool.connect()
-      const typeId = await client.query("SELECT id FROM pet_type WHERE type=$1", [this.petType])
+      const typeId = await client.query("SELECT id FROM pet_types WHERE type=$1", [this.petType])
       this.petTypeId = typeId.rows[0].id
       if(Number.isNaN(parseInt(this.petAge))){
         this.petAge=null
