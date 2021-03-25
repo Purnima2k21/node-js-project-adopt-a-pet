@@ -1,1 +1,7 @@
-/* your styles, here */
+.no-bullets {
+  list-style-type: none;
+}
+
+.pet-tile {
+  margin: 2rem;
+}

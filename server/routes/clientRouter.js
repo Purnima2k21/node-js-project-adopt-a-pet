@@ -1,11 +1,11 @@
 import express from "express"
 
-const router = new express.Router()
+const clientRouter = new express.Router()
 
-const clientRoutes = ["/", "/pets", "/pets/:petType", "/api/v1/surrender-form"]
+const clientRoutes = ["/", "/pets", "/pets/:petType", "/pets/:petType/:id", "/adoptions/new"]
 
 clientRouter.get(clientRoutes, (req, res) => {
   res.render("home")
 })
 
-export default router
+export default clientRouter
