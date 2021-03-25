@@ -1,7 +1,7 @@
 import express from "express"
 import clientRouter from "./clientRouter.js"
 import petsRouter from "./api/v1/petsRouter.js"
-import surrenderFormRouter from "./api/v1/surrenderFormRouter"
+import adoptionsRouter from "./api/v1/adoptionsRouter.js"
 const rootRouter = new express.Router()
 
 rootRouter.get("/", (req, res) => {
@@ -10,9 +10,7 @@ rootRouter.get("/", (req, res) => {
 
 rootRouter.use("/", clientRouter)
 rootRouter.use("/api/v1/pets", petsRouter)
-
-rootRouter.use("/api/v1/pets", petsRouter)
-rootRouter.use('/api/v1/surrender-form', surrenderFormRouter)
+rootRouter.use('/api/v1/adoptions', adoptionsRouter)
 
 
 export default rootRouter
