@@ -1,7 +1,6 @@
 import pg from "pg"
 import _ from "lodash"
 
-
 const pool = new pg.Pool({ connectionString: "postgres://postgres:password@localhost:5432/pets" })
 
 class Pet {

@@ -1,16 +1,29 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from "react-router-dom"
+import ErrorsList from './ErrorsList'
 
-const AdoptionApplicationForm = (props) => {
+const AdoptionApplicationForm = ({petId, onFormSubmit}) => {
   const [applicationRecord, setApplicationRecord] = useState({
     name: "",
     phoneNumber: "",
     email: "",
     homeStatus: "",
-    applicationStatus: ""
+    applicationStatus: "pending",
+    petId: petId
   })
+
   const [errors, setErrors] = useState([])
-  const [shouldRedirect, setShouldRedirect] = useState(false)
+  
+  const validFormSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["name", "phoneNumber", "email", "homeStatus"]
+    requiredFields.forEach((field) => {
+      if (!applicationRecord[field] || applicationRecord[field].trim() === "") {
+        submitErrors = { ...submitErrors, [field]: "can't be blank" }
+      }
+    })
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
 
   const addNewApplication = async () => {
     try {
@@ -27,44 +40,37 @@ const AdoptionApplicationForm = (props) => {
           return setErrors(body.errors)
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
-          const error = new Error(errorMessage)
-          throw (error)
+          throw new Error(errorMessage)
         }
       } else {
         const body = await response.json()
-        // Need to change to update on page in order to let user know
-        console.log("Your request is in process.", body);
-        setShouldRedirect(true)
       }
-
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
 
   const handleChange = (event) => {
-    setApplicationRecord({
-      ...applicationRecord,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
+    const { name, value } = event.currentTarget
+    setApplicationRecord({ ...applicationRecord, [name]: value })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addNewApplication()
+    if (validFormSubmission()) {
+      addNewApplication()
+      onFormSubmit()
+    }
   }
-
-  if (shouldRedirect) {
-    return <Redirect to="/pets" />
-  }
-
-  // const setApplicationStatus()?? 
 
   return (
     <form onSubmit={handleSubmit}>
+
       <h1>Apply to Adopt!!!</h1>
+      <ErrorsList errors={errors}/>
       <label htmlFor="name">Name
       <input
+        type="text"
         onChange={handleChange}
         id="name"
         name="name"
@@ -74,6 +80,7 @@ const AdoptionApplicationForm = (props) => {
 
       <label htmlFor="phoneNumber">Phone Number
       <input
+        type="tel"
         onChange={handleChange}
         id="phoneNumber"
         name="phoneNumber"
@@ -82,7 +89,8 @@ const AdoptionApplicationForm = (props) => {
       </label>
 
       <label htmlFor="email">Email
-      <input
+      <input 
+        type="email"
         onChange={handleChange}
         id="email"
         name="email"
@@ -91,17 +99,15 @@ const AdoptionApplicationForm = (props) => {
       </label>
 
       <label htmlFor="homeStatus">Home Status
-    
-      <select name="homeStatus" id="homeStatus">
-        <option value="owned">Owned</option>
-        <option value="rent">Rent</option>
-      </select>
+        <select onChange={handleChange} value={applicationRecord.homeStatus} name="homeStatus" id="homeStatus">
+          <option value="">Select an option:</option>
+          <option value="own">Own</option>
+          <option value="rent">Rent</option>
+        </select>
       </label>
 
-      <input type="submit" value="Submit Application" />
-    </form>
-  
-    // Function that updates application to pending
+        <input className="button" type="submit" value="Submit Application" />
+    </form>  
   )
 }
 

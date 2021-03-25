@@ -6,13 +6,26 @@ const pool = new pg.Pool({
 })
 
 class AdoptionApplication {
-  constructor({ name, phone_number, email, home_status, application_status = null, pet_id = null }) {
-    this.name = name;
-    this.phone_number = phone_number;
-    this.email = email;
-    this.home_status = home_status;
-    this.application_status = application_status;
-    this.pet_id = pet_id
+  constructor({ 
+    id=null,
+    applicationStatus = null, 
+    application_status = null,
+    petId = null,
+    pet_id,
+    name, 
+    email, 
+    phoneNumber,
+    phone_number, 
+    homeStatus, 
+    home_status,
+  }) {
+    this.id = id
+    this.applicationStatus = applicationStatus || application_status
+    this.petId = petId || pet_id
+    this.name = name 
+    this.email = email
+    this.phoneNumber = phoneNumber || phone_number
+    this.homeStatus = homeStatus || home_status
   }
 
   static async findAll() {
@@ -49,8 +62,6 @@ class AdoptionApplication {
     return isValid
   }
 
-
-
   async save() {
     try {
       if (this.isValid()) {
@@ -58,11 +69,18 @@ class AdoptionApplication {
 
         const client = await pool.connect()
 
-        const query = 'INSERT INTO adoption_applications (name, phone_number, email, home_status) VALUES ($1, $2, $3, $4)'
+        const queryString =
+        "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) " +
+        "VALUES ($1, $2, $3, $4, $5, $6)"
 
-        await client.query(query, [this.name, this.phone_number, this.email, this.home_status])
-// will this update regardless of pending status?
-        this.application_status = "pending"
+        await client.query(queryString, [
+          this.name,
+          this.phoneNumber,
+          this.email,
+          this.homeStatus,
+          this.applicationStatus,
+          this.petId,
+        ])
         
         client.release()
         return true
