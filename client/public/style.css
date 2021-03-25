@@ -5,3 +5,7 @@
 .pet-tile {
   margin: 2rem;
 }
+
+.hidden {
+  display: none;
+}
