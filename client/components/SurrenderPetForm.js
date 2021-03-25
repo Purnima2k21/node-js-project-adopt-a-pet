@@ -16,6 +16,8 @@ const SurrenderPetForm = () => {
 
   const [errors, setErrors] = useState([])
 
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
   const validFormSubmission = () => {
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "petName", "petType", "petImageUrl"]
@@ -46,13 +48,19 @@ const SurrenderPetForm = () => {
         throw new Error(errorMessage)
       } else {
         const body = await response.json()
+        return true
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
 
-  const handleInputChange = event => {
+  let isHidden=false
+  if(formSubmitted) {
+    isHidden=true
+  }
+
+  const handleInputChange = (event) => {
     const { name, value } = event.currentTarget
     setNewPet({ ...newPet, [name]: value })
   }
@@ -60,13 +68,16 @@ const SurrenderPetForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (validFormSubmission()) {
-      addNewPet()
+      if(addNewPet()) {
+        setFormSubmitted(true)
+      }
     }
   }
 
   return (
     <div>
       <h1>Surrender Pet Form</h1>
+      {isHidden && <h3>Your request is in process.</h3>}
       <ErrorsList errors={errors} />
       <form onSubmit={handleSubmit} className="callout">
         <div className="grid-container grid-margin-x">

@@ -9,7 +9,7 @@ adoptionsRouter.post("/", async (req, res) => {
     const formData = req.body
     const newSurrenderApp = new PetSurrenderApplication(formData)
     if (await newSurrenderApp.save()) {
-      return res.status(304)
+      return res.status(201)
     } else {
       return res.status(422)
     }
