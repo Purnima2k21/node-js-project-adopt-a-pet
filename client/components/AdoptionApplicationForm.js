@@ -35,7 +35,7 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
         body: JSON.stringify(applicationRecord)
       })
       if (!response.ok) {
-        if (response.status === 622) {
+        if (response.status === 422) {
           const body = await response.json()
           return setErrors(body.errors)
         } else {
