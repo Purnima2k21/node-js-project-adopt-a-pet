@@ -16,6 +16,8 @@ const SurrenderPetForm = () => {
 
   const [errors, setErrors] = useState([])
 
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
   const validFormSubmission = () => {
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "petName", "petType", "petImageUrl"]
@@ -46,10 +48,16 @@ const SurrenderPetForm = () => {
         throw new Error(errorMessage)
       } else {
         const body = await response.json()
+        return true
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
+  }
+
+  let isHidden=false
+  if(formSubmitted) {
+    isHidden=true
   }
 
   const handleInputChange = (event) => {
@@ -60,15 +68,18 @@ const SurrenderPetForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (validFormSubmission()) {
-      addNewPet()
+      if(addNewPet()) {
+        setFormSubmitted(true)
+      }
     }
   }
 
   return (
     <div>
       <h1>Surrender Pet Form</h1>
+      {isHidden && <h3>Your request is in process.</h3>}
       <ErrorsList errors={errors} />
-      <form onSubmit={handleSubmit} className="callout">
+      <form onSubmit={handleSubmit} className={`callout ${isHidden && "hidden"}`}>
         <label htmlFor="name">
           Name:
           <input
@@ -84,7 +95,7 @@ const SurrenderPetForm = () => {
           Phone Number:
           <input
             id="phoneNumber"
-            type="text"
+            type="tel"
             name="phoneNumber"
             onChange={handleInputChange}
             value={newPet.phoneNumber}
@@ -95,7 +106,7 @@ const SurrenderPetForm = () => {
           Email:
           <input
             id="email"
-            type="text"
+            type="email"
             name="email"
             onChange={handleInputChange}
             value={newPet.email}
@@ -144,7 +155,7 @@ const SurrenderPetForm = () => {
           Pet Image Url:
           <input
             id="petImageUrl"
-            type="text"
+            type="url"
             name="petImageUrl"
             onChange={handleInputChange}
             value={newPet.petImageUrl}
