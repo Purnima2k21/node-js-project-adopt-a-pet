@@ -3,7 +3,7 @@ import _ from "lodash"
 
 import PetTile from "./PetTile"
 
-const PetsIndex = props => {
+const PetsIndex = (props) => {
   const [pets, setPets] = useState([])
   const { petType } = props.match.params
 
@@ -25,7 +25,7 @@ const PetsIndex = props => {
     getPetsOfType()
   }, [petType])
 
-  const petsIndexItems = pets.map(pet => {
+  const petsIndexItems = pets.map((pet) => {
     return <PetTile key={pet.id} petType={petType} {...pet} />
   })
 
