@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 const PetTile = ({ id, name, imgUrl, age, vaccinationStatus, petType }) => {
   return (
     <div className="small-4 cell">
-      <div>
         <li className="pet-tile">
           <Link to={`/pets/${petType}/${id}`}>
             <h2>{name}</h2>
@@ -15,7 +14,6 @@ const PetTile = ({ id, name, imgUrl, age, vaccinationStatus, petType }) => {
             <li>Vaccinated: {vaccinationStatus ? "Yes" : "No"}</li>
           </ul>
         </li>
-      </div>
     </div>
   )
 }
