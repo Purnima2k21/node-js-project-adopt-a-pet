@@ -32,7 +32,9 @@ const PetsIndex = (props) => {
   return (
     <div>
       <h1>{_.capitalize(petType)} Available for Adoption</h1>
-      <ul className="no-bullets">{petsIndexItems}</ul>
+      <div className="grid-container">
+        <ul className="no-bullets grid-x grid-padding-x">{petsIndexItems}</ul>
+      </div>
     </div>
   )
 }
