@@ -8,7 +8,7 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
     email: "",
     homeStatus: "",
     applicationStatus: "pending",
-    petId: petId
+    petId: petId,
   })
 
   const [errors, setErrors] = useState([])
@@ -16,7 +16,7 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
   const validFormSubmission = () => {
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "homeStatus"]
-    requiredFields.forEach(field => {
+    requiredFields.forEach((field) => {
       if (!applicationRecord[field] || applicationRecord[field].trim() === "") {
         submitErrors = { ...submitErrors, [field]: "can't be blank" }
       }
@@ -30,18 +30,17 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
       const response = await fetch("/api/v1/pets", {
         method: "POST",
         headers: new Headers({
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         }),
-        body: JSON.stringify(applicationRecord)
+        body: JSON.stringify(applicationRecord),
       })
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
           return setErrors(body.errors)
-        } else {
-          const errorMessage = `${response.status} (${response.statusText})`
-          throw new Error(errorMessage)
         }
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
       } else {
         const body = await response.json()
       }
@@ -50,12 +49,12 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
     }
   }
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.currentTarget
     setApplicationRecord({ ...applicationRecord, [name]: value })
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     if (validFormSubmission()) {
       addNewApplication()
@@ -67,9 +66,9 @@ const AdoptionApplicationForm = ({ petId, onFormSubmit }) => {
     <div className="callout">
       <form onSubmit={handleSubmit}>
         <h1>Apply to Adopt!!!</h1>
+        <ErrorsList errors={errors} />
         <div className="grid-container grid-margin-x">
           <div className="grid-x grid-padding-x">
-            <ErrorsList errors={errors} />
             <div className="small-6 cell">
               <label htmlFor="name">
                 Name

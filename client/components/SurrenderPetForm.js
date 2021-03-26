@@ -79,7 +79,7 @@ const SurrenderPetForm = () => {
       <h1>Surrender Pet Form</h1>
       {isHidden && <h3>Your request is in process.</h3>}
       <ErrorsList errors={errors} />
-      <form onSubmit={handleSubmit} className="callout">
+      <form onSubmit={handleSubmit} className={`callout ${isHidden && "hidden"}`}>
         <div className="grid-container grid-margin-x">
           <div className="grid-x grid-padding-x">
             <div className="small-4 cell">
