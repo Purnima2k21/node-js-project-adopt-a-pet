@@ -1,5 +1,12 @@
 Sadie; https://g.petango.com/photos/1963/2b0f60ba-4da6-4b8d-b381-8f424eebcc35.jpg; 5; true; I originally came to PAWS from Hawaii, I was adopted but find myself back at PAWS because I am a princess who wants to be the only kitty in my castle and the center of your world.; adoptable; cat
 Macklemeow; https://g.petango.com/photos/337/065a8037-c907-4f4b-90fb-50d643342b40.jpg; 4; true; I'm currently in the process of being adopted!; pending; cat
+Starlet; https://pet-uploads.adoptapet.com/2/7/5/352566761.jpg; 5; true; I am social and sweet, and  learning that I can have a wonderful new life with people who care; adoptable; cat
+Eartha; https://pet-uploads.adoptapet.com/5/8/7/352561196.jpg; 3; true; I never had a friend in my life hence I need a dedicated special friend; adoptable; cat
+Dash; https://pet-uploads.adoptapet.com/d/1/a/352570159.jpg; 6; true; My name is Dash and Look how gorgeous I am. I am ready to be your friend; pending; cat
+Elizabeth; https://pet-uploads.adoptapet.com/7/f/1/442558866.jpg; 3; true; I am from California and I am very shy and will require someone with patience; pending; cat
+Mimi; https://pet-uploads.adoptapet.com/7/3/7/419480378.jpg; 2; true; I am a sweet little girl and my favorite place to be is on my friend's lap; adoptable; cat
+Bunny; https://pet-uploads.adoptapet.com/2/d/0/481834590.jpg; 4; true; I am a sweet, 4 year old girl with a super soft coat; pending; cat
+Kasan; https://pet-uploads.adoptapet.com/f/b/7/266366117.jpg; 3; true; I am a beautiful charming girl with a big and fun personality; adoptable; cat
 Marge; https://g.petango.com/photos/1963/786f5075-08f0-4947-87fa-40d6af12f515.jpg; 9; true; I found myself displaced while living in California. I traveled to the Pacific Northwest to find my lucky break at being adopted.; adoptable; dog
 George; https://g.petango.com/photos/1963/c14f2795-62ae-44f3-b89e-77d04f68ac1d.jpg; 1; true; I originally came from Texas and was adopted last year, then was returned back to PAWS in December.; adoptable; dog
 Trixie; https://g.petango.com/photos/337/35fdd1e7-6cb3-40c0-ba0d-59b967e9d3cc.jpg; 2; true; I'm currently in the process of being adopted!; pending; rabbit
