@@ -55,12 +55,12 @@ const SurrenderPetForm = () => {
     }
   }
 
-  let isHidden=false
-  if(formSubmitted) {
-    isHidden=true
+  let isHidden = false
+  if (formSubmitted) {
+    isHidden = true
   }
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const { name, value } = event.currentTarget
     setNewPet({ ...newPet, [name]: value })
   }
@@ -68,7 +68,7 @@ const SurrenderPetForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (validFormSubmission()) {
-      if(addNewPet()) {
+      if (addNewPet()) {
         setFormSubmitted(true)
       }
     }
@@ -208,7 +208,9 @@ const SurrenderPetForm = () => {
                 <label htmlFor="vaccinationStatusNull">Unknown</label>
               </div>
             </div>
-            <input className="button" type="submit" value="Surrender My Pet" />
+            <div className="small-4 cell">
+              <input className="button" type="submit" value="Surrender My Pet" />
+            </div>
           </div>
         </div>
       </form>
